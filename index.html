@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FraudDetect-AI — AI Fraud Detection Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>🏦 FraudDetect-AI</h1>
+    <div class="header-status">
+      <span class="status-dot"></span>
+      <span>Monitoring 2,847 active transactions</span>
+    </div>
+  </header>
+
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-label">Total Transactions (24h)</div>
+      <div class="metric-value">14,283</div>
+      <div class="metric-change up">↑ 12.3% vs yesterday</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Fraud Detected</div>
+      <div class="metric-value" style="color: var(--accent-red)">47</div>
+      <div class="metric-change up">↑ 5 more than avg</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Amount at Risk</div>
+      <div class="metric-value" style="color: var(--accent-amber)">$1.2M</div>
+      <div class="metric-change up">↑ $200K vs last week</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Detection Rate</div>
+      <div class="metric-value" style="color: var(--accent-emerald)">99.2%</div>
+      <div class="metric-change down">↓ 0.1% improvement</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Avg Response Time</div>
+      <div class="metric-value" style="color: var(--accent-blue)">1.2s</div>
+      <div class="metric-change down">↓ 0.3s faster</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- Main: Transaction table -->
+    <div>
+      <div class="card">
+        <div class="card-header">
+          <h2>📋 Transaction Monitor</h2>
+          <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="critical">Critical</button>
+            <button class="filter-btn" data-filter="high">High</button>
+            <button class="filter-btn" data-filter="medium">Medium</button>
+            <button class="filter-btn" data-filter="low">Low</button>
+          </div>
+        </div>
+        <table class="tx-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Time</th>
+              <th>Merchant</th>
+              <th>Amount</th>
+              <th>Country</th>
+              <th>Risk</th>
+              <th>Level</th>
+            </tr>
+          </thead>
+          <tbody id="txBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Risk Heatmap -->
+      <div class="card" style="margin-top: 20px;">
+        <div class="card-header">
+          <h2>🗺️ Risk Heatmap — 24h Geographic Distribution</h2>
+        </div>
+        <div style="padding: 16px;">
+          <div class="heatmap" id="heatmapGrid"></div>
+          <div class="heatmap-label">
+            <span>00:00</span>
+            <span>06:00</span>
+            <span>12:00</span>
+            <span>18:00</span>
+            <span>23:59</span>
+          </div>
+          <div class="heatmap-legend">
+            <span>Low risk</span>
+            <div class="legend-gradient"></div>
+            <span>High risk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Alerts -->
+      <div class="card">
+        <div class="card-header">
+          <h2>🚨 Active Alerts</h2>
+        </div>
+        <div style="padding: 14px;" id="alertContainer"></div>
+      </div>
+
+      <!-- Risk Distribution -->
+      <div class="card">
+        <div class="card-header">
+          <h2>📊 Risk Distribution</h2>
+        </div>
+        <div style="padding: 16px; text-align: center;">
+          <div class="pie-chart" id="pieChart"></div>
+          <div class="pie-legend" id="pieLegend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
